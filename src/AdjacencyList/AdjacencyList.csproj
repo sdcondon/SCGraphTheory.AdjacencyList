@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Adjacency list graph implementation.</Description>
+    <PackageTags>graphs graph theory adjacency list</PackageTags>
+    <AssemblyName>SCGraphTheory.AdjacencyList</AssemblyName>
+    <RootNamespace>SCGraphTheory.AdjacencyList</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SCGraphTheory.Abstractions" Version="1.0.1" />
+  </ItemGroup>
+
+</Project>

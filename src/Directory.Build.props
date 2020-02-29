@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Simon Condon</Authors>
+    <Company />
+    <Product>Graph Theory</Product>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList.git</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/sdcondon/GraphTheory.AdjacencyList</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <Version>0.0.0-localbuild+localbuild</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(SolutionDir)\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+</Project>
