@@ -7,6 +7,8 @@
     <PackageTags>graphs graph theory adjacency list</PackageTags>
     <AssemblyName>SCGraphTheory.AdjacencyList</AssemblyName>
     <RootNamespace>SCGraphTheory.AdjacencyList</RootNamespace>
+
+    <DocumentationFile>SCGraphTheory.AdjacencyList.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

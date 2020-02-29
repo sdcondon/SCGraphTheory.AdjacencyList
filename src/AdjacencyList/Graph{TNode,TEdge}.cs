@@ -9,7 +9,7 @@ namespace SCGraphTheory.AdjacencyList
     /// <para />
     /// This implementation allows data to be included in nodes and edges via inheritance, but has a couple of potential drawbacks.
     /// Firstly, the addition of a <see cref="TNode"/> to more than one <see cref="Graph{TNode, TEdge}"/> isn't protected against, with potentially confusing results.
-    /// Secondly, undirected edges are a complex to implement.
+    /// Secondly, undirected edges are a little complex to implement.
     /// </summary>
     /// <typeparam name="TNode">The type of each node.</typeparam>
     /// <typeparam name="TEdge">The type of each edge.</typeparam>
