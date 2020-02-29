@@ -1,4 +1,4 @@
-﻿namespace SCGraphTheory.AdjacencyList.WithUnsealedNodesAndEdges
+﻿namespace SCGraphTheory.AdjacencyList
 {
     /// <summary>
     /// Edge type for the <see cref="Graph{TNode, TEdge}"/> class.

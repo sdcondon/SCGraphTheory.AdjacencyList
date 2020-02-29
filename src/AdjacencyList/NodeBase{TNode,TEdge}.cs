@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace SCGraphTheory.AdjacencyList.WithUnsealedNodesAndEdges
+namespace SCGraphTheory.AdjacencyList
 {
     /// <summary>
     /// Base node type for the <see cref="Graph{TNode, TEdge}"/> class.

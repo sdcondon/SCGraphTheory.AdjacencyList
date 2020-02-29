@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SCGraphTheory.AdjacencyList.WithUnsealedNodesAndEdges
+namespace SCGraphTheory.AdjacencyList
 {
     /// <summary>
     /// Mutable implementation of <see cref="IGraph{TNode, TEdge}"/> that uses adjacency list representation.

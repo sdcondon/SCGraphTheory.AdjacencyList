@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
-namespace SCGraphTheory.AdjacencyList.WithUnsealedNodesAndEdges
+namespace SCGraphTheory.AdjacencyList
 {
     [TestClass]
     public class UndirectedGraphTests
