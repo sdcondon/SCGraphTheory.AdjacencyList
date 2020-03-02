@@ -5,7 +5,7 @@
     <Product>Graph Theory</Product>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList.git</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/sdcondon/GraphTheory.AdjacencyList</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
