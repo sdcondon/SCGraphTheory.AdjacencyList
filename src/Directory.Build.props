@@ -7,6 +7,7 @@
     <RepositoryUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>2020 Simon Condon</Copyright>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 

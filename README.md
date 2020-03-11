@@ -29,6 +29,7 @@ namespace MyDirectedGraph
     public static class Program
     {
         ...
+
         private static Graph<Node, Edge> MakeGraph()
         {
             var graph = new Graph<Node, Edge>();
@@ -36,6 +37,7 @@ namespace MyDirectedGraph
             graph.Add(node1 = new Node("node 1"));
             graph.Add(node2 = new Node("node 2"));
             graph.Add(new Edge(node1, node2, "edge 1-2"));
+            ...
         }
     }
 }
@@ -90,6 +92,7 @@ namespace MyUndirectedGraph
             graph.Add(node1 = new Node());
             graph.Add(node2 = new Node());
             graph.Add(new Edge(node1, node2, "A"));
+            ...
         }
     }
 }
@@ -144,6 +147,7 @@ namespace MyUndirectedGraph2
             graph.Add(node1 = new Node());
             graph.Add(node2 = new Node());
             graph.Add(new Edge(node1, node2, 1));
+            ...
         }
     }
 }
