@@ -43,7 +43,9 @@ namespace MyDirectedGraph
 }
 ```
 
-**Undirected graphs** take a little more effort, though there's a handy `UndirectedEdgeBase` class to do a bit of the work for you. UndirectedEdgeBase still conforms to the `IEdge<TNode, TEdge>` interface, so each undirected edge actually consists of a pair of edge objects. Here's an example with a direction-ignorant settable edge data property:
+**Undirected graphs** take a little more effort, though there's a handy `UndirectedEdgeBase` class to do a bit of the work for you. `UndirectedEdgeBase` still conforms to the `IEdge<TNode, TEdge>` interface, so each undirected edge actually consists of a pair of edge objects*. Here's an example with a direction-ignorant settable edge data property:
+
+*\* Note that if we really wanted a single object on the heap for an undirected edge, we could probably do something with by making the actual IEdges value types that refer to the single "edge". The extra complexity and resulting caveats (e.g. needing to be careful with mutability) mean that it's not something I've bothered exploring thus far..*
 
 ```
 using SCGraphTheory.AdjacencyList
