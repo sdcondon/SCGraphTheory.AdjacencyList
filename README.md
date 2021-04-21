@@ -8,7 +8,7 @@ Adjacency list graph implementation that implements the interfaces defined in th
 
 **Directed graphs** are the simplest to use. Here's an example with some data properties:
 
-```
+```csharp
 using SCGraphTheory.AdjacencyList
 
 namespace MyDirectedGraph
@@ -49,7 +49,7 @@ namespace MyDirectedGraph
 
 *\* Note that if we really wanted a single object on the heap for an undirected edge, we could probably do something with by making the actual IEdges value types that refer to the single "edge". The extra complexity and resulting caveats (e.g. needing to be careful with mutability) mean that it's not something I've bothered exploring thus far..*
 
-```
+```csharp
 using SCGraphTheory.AdjacencyList
 
 namespace MyUndirectedGraph
@@ -104,7 +104,7 @@ namespace MyUndirectedGraph
 
 Finally, here's an example with "undirected" edges with a direction-specific settable data property (reverse edge negates the value of the property). Obviously its significant that `int` is a value type - solution would be a little more complex with a mutable reference type..
 
-```
+```csharp
 using SCGraphTheory.AdjacencyList
 
 namespace MyUndirectedGraph2
