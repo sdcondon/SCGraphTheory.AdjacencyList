@@ -13,8 +13,4 @@
 
     <Version>0.0.0-localbuild+localbuild</Version>
   </PropertyGroup>
-
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>$(SolutionDir)\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
 </Project>

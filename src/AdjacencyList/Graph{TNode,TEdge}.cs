@@ -35,7 +35,8 @@ namespace SCGraphTheory.AdjacencyList
             // A problem because we can't distinguish the edges in one graph from another, which means we could move between graphs when navigating.
             // Should somehow disallow this for integrity (but ideally want to avoid overhead of extra graph field in each and every node),
             // or merge the graphs completely when it happens (explore existing edges here, add em all to this graph - but that wouldn't suffice)..
-            // Implementation with sealed nodes doesn't have this issue because the constructors are internal..
+            // Worth noting that an implementation with sealed nodes (and e.g. a Value prop) wouldn't have this issue because the constructors could be
+            // internal..
             this.nodes.Add(node);
         }
 
