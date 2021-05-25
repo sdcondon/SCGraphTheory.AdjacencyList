@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Adjacency list graph implementation that implements the interfaces defined in SCGraphThreory.Abstractions.</Description>
+    <Description>Adjacency list graph implementation that implements the interfaces defined in SCGraphTheory.Abstractions.</Description>
     <PackageTags>graphs graph theory adjacency list</PackageTags>
     <AssemblyName>SCGraphTheory.AdjacencyList</AssemblyName>
     <RootNamespace>SCGraphTheory.AdjacencyList</RootNamespace>
