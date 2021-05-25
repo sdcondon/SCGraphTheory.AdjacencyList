@@ -3,16 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Adjacency list graph implementation.</Description>
+    <Description>Adjacency list graph implementation that implements the interfaces defined in SCGraphThreory.Abstractions.</Description>
     <PackageTags>graphs graph theory adjacency list</PackageTags>
     <AssemblyName>SCGraphTheory.AdjacencyList</AssemblyName>
     <RootNamespace>SCGraphTheory.AdjacencyList</RootNamespace>
+    <PackageIcon>SCGraphTheoryIcon.png</PackageIcon>
 
     <DocumentationFile>SCGraphTheory.AdjacencyList.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SCGraphTheory.Abstractions" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SCGraphTheoryIcon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
