@@ -13,11 +13,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SauceControl.InheritDoc" Version="1.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="SCGraphTheory.Abstractions" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="SCGraphTheoryIcon.png" Pack="true" PackagePath=""/>
+    <None Include="SCGraphTheoryIcon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
