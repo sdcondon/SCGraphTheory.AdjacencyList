@@ -1,3 +1,4 @@
+using FlUnit;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
@@ -6,86 +7,80 @@ namespace SCGraphTheory.AdjacencyList
     [TestClass]
     public class UndirectedGraphTests
     {
-        [TestMethod]
-        public void Construction()
-        {
-            // Arrange
-            var graph = new Graph<Node, Edge>();
+        public static Test Construction => TestThat
+            .When(() =>
+            {
+                var graph = new Graph<Node, Edge>();
 
-            // Act
-            Node node1, node2, node3;
-            graph.Add(node1 = new Node());
-            graph.Add(node2 = new Node());
-            graph.Add(node3 = new Node());
+                Node node1, node2, node3;
+                graph.Add(node1 = new Node());
+                graph.Add(node2 = new Node());
+                graph.Add(node3 = new Node());
 
-            Edge edge1, edge2, edge3;
-            graph.Add(edge1 = new Edge(node1, node2));
-            graph.Add(edge2 = new Edge(node2, node3));
-            graph.Add(edge3 = new Edge(node3, node1));
+                Edge edge1, edge2, edge3;
+                graph.Add(edge1 = new Edge(node1, node2));
+                graph.Add(edge2 = new Edge(node2, node3));
+                graph.Add(edge3 = new Edge(node3, node1));
 
-            // Assert
-            graph.Nodes.ShouldBe(new[] { node1, node2, node3 }, ignoreOrder: true);
-            graph.Edges.ShouldBe(new[] { edge1, edge1.Reverse, edge2, edge2.Reverse, edge3, edge3.Reverse }, ignoreOrder: true);
-            node1.Edges.ShouldBe(new[] { edge1, edge3.Reverse }, ignoreOrder: true);
-            node2.Edges.ShouldBe(new[] { edge2, edge1.Reverse }, ignoreOrder: true);
-            node3.Edges.ShouldBe(new[] { edge3, edge2.Reverse }, ignoreOrder: true);
-            edge1.Reverse.Reverse.ShouldBeSameAs(edge1);
-            edge2.Reverse.Reverse.ShouldBeSameAs(edge2);
-            edge3.Reverse.Reverse.ShouldBeSameAs(edge3);
-        }
+                return new { graph, node1, node2, node3, edge1, edge2, edge3 };
+            })
+            .Then(o => o.graph.Nodes.ShouldBe(new[] { o.node1, o.node2, o.node3 }))
+            .And(o => o.graph.Edges.ShouldBe(new[] { o.edge1, o.edge1.Reverse, o.edge2, o.edge2.Reverse, o.edge3, o.edge3.Reverse }, true))
+            .And(o => o.node1.Edges.ShouldBe(new[] { o.edge1, o.edge3.Reverse }, true))
+            .And(o => o.node2.Edges.ShouldBe(new[] { o.edge2, o.edge1.Reverse }, true))
+            .And(o => o.node3.Edges.ShouldBe(new[] { o.edge3, o.edge2.Reverse }, true))
+            .And(o => o.edge1.Reverse.Reverse.ShouldBeSameAs(o.edge1))
+            .And(o => o.edge2.Reverse.Reverse.ShouldBeSameAs(o.edge2))
+            .And(o => o.edge3.Reverse.Reverse.ShouldBeSameAs(o.edge3));
 
-        [TestMethod]
-        public void EdgeRemovalRemovesReverseEdge()
-        {
-            // Arrange
-            var graph = new Graph<Node, Edge>();
+        public static Test EdgeRemoval => TestThat
+            .Given(() =>
+            {
+                var graph = new Graph<Node, Edge>();
 
-            Node node1, node2, node3;
-            graph.Add(node1 = new Node());
-            graph.Add(node2 = new Node());
-            graph.Add(node3 = new Node());
+                Node node1, node2, node3;
+                graph.Add(node1 = new Node());
+                graph.Add(node2 = new Node());
+                graph.Add(node3 = new Node());
 
-            Edge edge1, edge2, edge3;
-            graph.Add(edge1 = new Edge(node1, node2));
-            graph.Add(edge2 = new Edge(node2, node3));
-            graph.Add(edge3 = new Edge(node3, node1));
+                Edge edge1, edge2, edge3;
+                graph.Add(edge1 = new Edge(node1, node2));
+                graph.Add(edge2 = new Edge(node2, node3));
+                graph.Add(edge3 = new Edge(node3, node1));
 
-            // Act
-            graph.Remove(edge3);
+                return new { graph, node1, node2, node3, edge1, edge2, edge3 };
+            })
+            .When(g => g.graph.Remove(g.edge3))
+            .Then((_, returnValue) => returnValue.ShouldBeTrue())
+            .And((g, _) => g.graph.Nodes.ShouldBe(new[] { g.node1, g.node2, g.node3 }))
+            .And((g, _) => g.graph.Edges.ShouldBe(new[] { g.edge1, g.edge1.Reverse, g.edge2, g.edge2.Reverse }))
+            .And((g, _) => g.node1.Edges.ShouldBe(new[] { g.edge1 }))
+            .And((g, _) => g.node2.Edges.ShouldBe(new[] { g.edge1.Reverse, g.edge2 }))
+            .And((g, _) => g.node3.Edges.ShouldBe(new[] { g.edge2.Reverse }));
 
-            // Assert
-            graph.Nodes.ShouldBe(new[] { node1, node2, node3 }, ignoreOrder: true);
-            graph.Edges.ShouldBe(new[] { edge1, edge1.Reverse, edge2, edge2.Reverse }, ignoreOrder: true);
-            node1.Edges.ShouldBe(new[] { edge1 });
-            node2.Edges.ShouldBe(new[] { edge1.Reverse, edge2 }, ignoreOrder: true);
-            node3.Edges.ShouldBe(new[] { edge2.Reverse });
-        }
+        public static Test NodeRemoval => TestThat
+            .Given(() =>
+            {
+                var graph = new Graph<Node, Edge>();
 
-        [TestMethod]
-        public void NodeRemovalRemovesIncidentEdge()
-        {
-            // Arrange
-            var graph = new Graph<Node, Edge>();
+                Node node1, node2, node3;
+                graph.Add(node1 = new Node());
+                graph.Add(node2 = new Node());
+                graph.Add(node3 = new Node());
 
-            Node node1, node2, node3;
-            graph.Add(node1 = new Node());
-            graph.Add(node2 = new Node());
-            graph.Add(node3 = new Node());
+                Edge edge1, edge2, edge3;
+                graph.Add(edge1 = new Edge(node1, node2));
+                graph.Add(edge2 = new Edge(node2, node3));
+                graph.Add(edge3 = new Edge(node3, node1));
 
-            Edge edge1, edge2, edge3;
-            graph.Add(edge1 = new Edge(node1, node2));
-            graph.Add(edge2 = new Edge(node2, node3));
-            graph.Add(edge3 = new Edge(node3, node1));
-
-            // Act
-            graph.Remove(node3);
-
-            // Assert
-            graph.Nodes.ShouldBe(new[] { node1, node2 }, ignoreOrder: true);
-            graph.Edges.ShouldBe(new[] { edge1, edge1.Reverse }, ignoreOrder: true);
-            node1.Edges.ShouldBe(new[] { edge1 });
-            node2.Edges.ShouldBe(new[] { edge1.Reverse });
-        }
+                return new { graph, node1, node2, node3, edge1, edge2, edge3 };
+            })
+            .When(g => g.graph.Remove(g.node3))
+            .Then((_, returnValue) => returnValue.ShouldBeTrue())
+            .And((g, _) => g.graph.Nodes.ShouldBe(new[] { g.node1, g.node2 }))
+            .And((g, _) => g.graph.Edges.ShouldBe(new[] { g.edge1, g.edge1.Reverse }))
+            .And((g, _) => g.node1.Edges.ShouldBe(new[] { g.edge1 }))
+            .And((g, _) => g.node2.Edges.ShouldBe(new[] { g.edge1.Reverse }));
 
         private class Node : NodeBase<Node, Edge>
         {

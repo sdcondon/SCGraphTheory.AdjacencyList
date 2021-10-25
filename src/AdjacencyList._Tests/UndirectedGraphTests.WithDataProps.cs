@@ -1,3 +1,4 @@
+using FlUnit;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 
@@ -6,41 +7,39 @@ namespace SCGraphTheory.AdjacencyList
     [TestClass]
     public class UndirectedGraphTests_WithDataProps
     {
-        [TestMethod]
-        public void Construction1()
-        {
-            // Arrange
-            var graph = new Graph<Node1, Edge1>();
+        public static Test Construction_StringData => TestThat
+            .When(() =>
+            {
+                var graph = new Graph<Node1, Edge1>();
 
-            // Act
-            Node1 node1, node2;
-            graph.Add(node1 = new Node1());
-            graph.Add(node2 = new Node1());
-            Edge1 edge;
-            graph.Add(edge = new Edge1(node1, node2, "A"));
+                Node1 node1, node2;
+                graph.Add(node1 = new Node1());
+                graph.Add(node2 = new Node1());
 
-            // Assert
-            edge.MyEdgeProp.ShouldBe("A");
-            edge.Reverse.MyEdgeProp.ShouldBe("A");
-        }
+                Edge1 edge;
+                graph.Add(edge = new Edge1(node1, node2, "A"));
 
-        [TestMethod]
-        public void Construction2()
-        {
-            // Arrange
-            var graph = new Graph<Node2, Edge2>();
+                return new { graph, node1, node2, edge };
+            })
+            .Then(o => o.edge.MyEdgeProp.ShouldBe("A"))
+            .And(o => o.edge.Reverse.MyEdgeProp.ShouldBe("A"));
 
-            // Act
-            Node2 node1, node2;
-            graph.Add(node1 = new Node2());
-            graph.Add(node2 = new Node2());
-            Edge2 edge;
-            graph.Add(edge = new Edge2(node1, node2, 1));
+        public static Test Construction_IntData => TestThat
+            .When(() =>
+            {
+                var graph = new Graph<Node2, Edge2>();
 
-            // Assert
-            edge.MyEdgeProp.ShouldBe(1);
-            edge.Reverse.MyEdgeProp.ShouldBe(-1);
-        }
+                Node2 node1, node2;
+                graph.Add(node1 = new Node2());
+                graph.Add(node2 = new Node2());
+
+                Edge2 edge;
+                graph.Add(edge = new Edge2(node1, node2, 1));
+
+                return new { graph, node1, node2, edge };
+            })
+            .Then(o => o.edge.MyEdgeProp.ShouldBe(1))
+            .And(o => o.edge.Reverse.MyEdgeProp.ShouldBe(-1));
 
         private class Node1 : NodeBase<Node1, Edge1>
         {

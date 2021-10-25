@@ -33,7 +33,7 @@ namespace SCGraphTheory.AdjacencyList
         /// Removes an outbound edge from the node.
         /// </summary>
         /// <param name="edge">The edge to remove.</param>
-        /// <remarks>Internal because callers should use the appropriate method of the gragh, which carries out integrity checks.</remarks>
+        /// <remarks>Internal because callers should use the appropriate method of the graph, which carries out integrity checks.</remarks>
         /// <returns>True if an edge was removed, otherwise false.</returns>
         internal bool RemoveOutboundEdge(TEdge edge)
         {
