@@ -2,7 +2,7 @@
 
 # SCGraphTheory.AdjacencyList
 
-[![NuGet version (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/v/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/)
+[![NuGet version (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/v/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) [![NuGet downloads (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/dt/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/)
 
 Adjacency list graph implementation that implements the interfaces defined in the [SCGraphTheory.Abstractions](https://github.com/sdcondon/SCGraphTheory.Abstractions) package, and can thus work with other packages that also use this abstraction - such as [SCGraphTheory.Search](https://github.com/sdcondon/SCGraphTheory.Search).
 
