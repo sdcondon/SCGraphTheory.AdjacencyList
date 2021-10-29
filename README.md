@@ -1,3 +1,5 @@
+![SCGraphTheory Icon](src/AdjacencyList/SCGraphTheoryIcon.png)
+
 # SCGraphTheory.AdjacencyList
 
 [![NuGet version (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/v/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/)
@@ -47,7 +49,7 @@ namespace MyDirectedGraph
 
 **Undirected graphs** take a little more effort, though there's a handy `UndirectedEdgeBase` class to do a bit of the work for you. `UndirectedEdgeBase` still conforms to the `IEdge<TNode, TEdge>` interface, so each undirected edge actually consists of a pair of edge objects*. Here's an example with a direction-ignorant settable edge data property:
 
-*\* Note that if we really wanted a single object on the heap for an undirected edge, we could probably do something with by making the actual IEdges value types that refer to the single "edge". The extra complexity and resulting caveats (e.g. needing to be careful with mutability) mean that it's not something I've bothered exploring thus far..*
+*\* Note that if we really wanted a single object on the heap for an undirected edge, we could probably do something with by making the actual IEdges value types that refer to the single "edge". The extra complexity and resulting caveats (edge structs as IEdge will be boxed, need to be careful with mutability, etc) mean that it's not something I've bothered exploring thus far..*
 
 ```csharp
 using SCGraphTheory.AdjacencyList;
@@ -156,3 +158,7 @@ namespace MyUndirectedGraph2
     }
 }
 ```
+
+## Notes
+
+* **"But this isn't an adjacency list representation..":** Yes, it is. Your algorithm textbook won't lumber itself with the conventions of object orientation, but .NET gives us them, and we should use the tools that we are given. If it helps, think of the node objects as the keys of a direct address table that points at each list.
