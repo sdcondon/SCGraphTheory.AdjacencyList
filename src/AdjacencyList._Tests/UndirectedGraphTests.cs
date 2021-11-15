@@ -24,7 +24,7 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, node3, edge1, edge2, edge3 };
             })
-            .Then(o => o.graph.Nodes.ShouldBe(new[] { o.node1, o.node2, o.node3 }))
+            .ThenReturns(o => o.graph.Nodes.ShouldBe(new[] { o.node1, o.node2, o.node3 }))
             .And(o => o.graph.Edges.ShouldBe(new[] { o.edge1, o.edge1.Reverse, o.edge2, o.edge2.Reverse, o.edge3, o.edge3.Reverse }, true))
             .And(o => o.node1.Edges.ShouldBe(new[] { o.edge1, o.edge3.Reverse }, true))
             .And(o => o.node2.Edges.ShouldBe(new[] { o.edge2, o.edge1.Reverse }, true))
@@ -50,13 +50,13 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, node3, edge1, edge2, edge3 };
             })
-            .When(g => g.graph.Remove(g.edge3))
-            .Then((_, returnValue) => returnValue.ShouldBeTrue())
-            .And((g, _) => g.graph.Nodes.ShouldBe(new[] { g.node1, g.node2, g.node3 }))
-            .And((g, _) => g.graph.Edges.ShouldBe(new[] { g.edge1, g.edge1.Reverse, g.edge2, g.edge2.Reverse }))
-            .And((g, _) => g.node1.Edges.ShouldBe(new[] { g.edge1 }))
-            .And((g, _) => g.node2.Edges.ShouldBe(new[] { g.edge1.Reverse, g.edge2 }))
-            .And((g, _) => g.node3.Edges.ShouldBe(new[] { g.edge2.Reverse }));
+            .When(given => given.graph.Remove(given.edge3))
+            .ThenReturns((_, returnValue) => returnValue.ShouldBeTrue())
+            .And((given, _) => given.graph.Nodes.ShouldBe(new[] { given.node1, given.node2, given.node3 }))
+            .And((given, _) => given.graph.Edges.ShouldBe(new[] { given.edge1, given.edge1.Reverse, given.edge2, given.edge2.Reverse }))
+            .And((given, _) => given.node1.Edges.ShouldBe(new[] { given.edge1 }))
+            .And((given, _) => given.node2.Edges.ShouldBe(new[] { given.edge1.Reverse, given.edge2 }))
+            .And((given, _) => given.node3.Edges.ShouldBe(new[] { given.edge2.Reverse }));
 
         public static Test NodeRemoval => TestThat
             .Given(() =>
@@ -75,12 +75,12 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, node3, edge1, edge2, edge3 };
             })
-            .When(g => g.graph.Remove(g.node3))
-            .Then((_, returnValue) => returnValue.ShouldBeTrue())
-            .And((g, _) => g.graph.Nodes.ShouldBe(new[] { g.node1, g.node2 }))
-            .And((g, _) => g.graph.Edges.ShouldBe(new[] { g.edge1, g.edge1.Reverse }))
-            .And((g, _) => g.node1.Edges.ShouldBe(new[] { g.edge1 }))
-            .And((g, _) => g.node2.Edges.ShouldBe(new[] { g.edge1.Reverse }));
+            .When(given => given.graph.Remove(given.node3))
+            .ThenReturns((_, returnValue) => returnValue.ShouldBeTrue())
+            .And((given, _) => given.graph.Nodes.ShouldBe(new[] { given.node1, given.node2 }))
+            .And((given, _) => given.graph.Edges.ShouldBe(new[] { given.edge1, given.edge1.Reverse }))
+            .And((given, _) => given.node1.Edges.ShouldBe(new[] { given.edge1 }))
+            .And((given, _) => given.node2.Edges.ShouldBe(new[] { given.edge1.Reverse }));
 
         private class Node : NodeBase<Node, Edge>
         {
