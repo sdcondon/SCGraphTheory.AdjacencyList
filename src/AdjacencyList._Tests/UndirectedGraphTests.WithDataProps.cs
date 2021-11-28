@@ -1,11 +1,9 @@
+using FluentAssertions;
 using FlUnit;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shouldly;
 
 namespace SCGraphTheory.AdjacencyList
 {
-    [TestClass]
-    public class UndirectedGraphTests_WithDataProps
+    public static class UndirectedGraphTests_WithDataProps
     {
         public static Test Construction_StringData => TestThat
             .When(() =>
@@ -21,8 +19,8 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, edge };
             })
-            .ThenReturns(o => o.edge.MyEdgeProp.ShouldBe("A"))
-            .And(o => o.edge.Reverse.MyEdgeProp.ShouldBe("A"));
+            .ThenReturns(o => o.edge.MyEdgeProp.Should().Be("A"))
+            .And(o => o.edge.Reverse.MyEdgeProp.Should().Be("A"));
 
         public static Test Construction_IntData => TestThat
             .When(() =>
@@ -38,8 +36,8 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, edge };
             })
-            .ThenReturns(o => o.edge.MyEdgeProp.ShouldBe(1))
-            .And(o => o.edge.Reverse.MyEdgeProp.ShouldBe(-1));
+            .ThenReturns(o => o.edge.MyEdgeProp.Should().Be(1))
+            .And(o => o.edge.Reverse.MyEdgeProp.Should().Be(-1));
 
         private class Node1 : NodeBase<Node1, Edge1>
         {
