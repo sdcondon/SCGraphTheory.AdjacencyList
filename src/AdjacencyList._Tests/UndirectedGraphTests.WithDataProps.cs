@@ -19,7 +19,8 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, edge };
             })
-            .ThenReturns(o => o.edge.MyEdgeProp.Should().Be("A"))
+            .ThenReturns()
+            .And(o => o.edge.MyEdgeProp.Should().Be("A"))
             .And(o => o.edge.Reverse.MyEdgeProp.Should().Be("A"));
 
         public static Test Construction_IntData => TestThat
@@ -36,7 +37,8 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, edge };
             })
-            .ThenReturns(o => o.edge.MyEdgeProp.Should().Be(1))
+            .ThenReturns()
+            .And(o => o.edge.MyEdgeProp.Should().Be(1))
             .And(o => o.edge.Reverse.MyEdgeProp.Should().Be(-1));
 
         private class Node1 : NodeBase<Node1, Edge1>

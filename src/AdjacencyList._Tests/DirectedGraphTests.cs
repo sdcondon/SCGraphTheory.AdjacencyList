@@ -22,7 +22,8 @@ namespace SCGraphTheory.AdjacencyList
 
                 return new { graph, node1, node2, node3, edge1, edge2, edge3 };
             })
-            .ThenReturns(o => o.graph.Nodes.Should().BeEquivalentTo(new[] { o.node1, o.node2, o.node3 }))
+            .ThenReturns()
+            .And(o => o.graph.Nodes.Should().BeEquivalentTo(new[] { o.node1, o.node2, o.node3 }))
             .And(o => o.graph.Edges.Should().BeEquivalentTo(new[] { o.edge1, o.edge2, o.edge3 }))
             .And(o => o.node1.Edges.Should().BeEquivalentTo(new[] { o.edge1 }))
             .And(o => o.node2.Edges.Should().BeEquivalentTo(new[] { o.edge2 }))
@@ -46,7 +47,8 @@ namespace SCGraphTheory.AdjacencyList
                 return new { graph, node1, node2, node3, edge1, edge2, edge3 };
             })
             .When(given => given.graph.Remove(given.edge3))
-            .ThenReturns((_, returnValue) => returnValue.Should().BeTrue())
+            .ThenReturns()
+            .And((_, returnValue) => returnValue.Should().BeTrue())
             .And((given, _) => given.graph.Nodes.Should().BeEquivalentTo(new[] { given.node1, given.node2, given.node3 }))
             .And((given, _) => given.graph.Edges.Should().BeEquivalentTo(new[] { given.edge1, given.edge2 }))
             .And((given, _) => given.node1.Edges.Should().BeEquivalentTo(new[] { given.edge1 }))
@@ -71,7 +73,8 @@ namespace SCGraphTheory.AdjacencyList
                 return new { graph, node1, node2, node3, edge1, edge2, edge3 };
             })
             .When(given => given.graph.Remove(given.node3))
-            .ThenReturns((_, returnValue) => returnValue.Should().BeTrue())
+            .ThenReturns()
+            .And((_, returnValue) => returnValue.Should().BeTrue())
             .And((given, _) => given.graph.Nodes.Should().BeEquivalentTo(new[] { given.node1, given.node2 }))
             .And((given, _) => given.graph.Edges.Should().BeEquivalentTo(new[] { given.edge1 }))
             .And((given, _) => given.node1.Edges.Should().BeEquivalentTo(new[] { given.edge1 }))
