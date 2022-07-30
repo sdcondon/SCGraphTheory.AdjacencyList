@@ -7,6 +7,7 @@
     <PackageTags>graph theory adjacency list</PackageTags>
     <AssemblyName>SCGraphTheory.AdjacencyList</AssemblyName>
     <RootNamespace>SCGraphTheory.AdjacencyList</RootNamespace>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>SCGraphTheoryIcon.png</PackageIcon>
 
     <DocumentationFile>SCGraphTheory.AdjacencyList.xml</DocumentationFile>
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <None Include="SCGraphTheoryIcon.png" Pack="true" PackagePath="" />
+    <None Include="README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
