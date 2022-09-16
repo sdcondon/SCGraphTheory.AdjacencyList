@@ -5,12 +5,14 @@
     <Product>SCGraphTheory</Product>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList.git</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageProjectUrl>https://github.com/sdcondon/SCGraphTheory.AdjacencyList</PackageProjectUrl>
     <PackageReleaseNotes>See https://github.com/sdcondon/SCGraphTheory.AdjacencyList/releases.</PackageReleaseNotes>  
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>2020 Simon Condon</Copyright>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
 
     <Version>0.0.0-localbuild+localbuild</Version>
   </PropertyGroup>
