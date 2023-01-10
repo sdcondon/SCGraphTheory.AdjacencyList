@@ -1,6 +1,6 @@
 # SCGraphTheory.AdjacencyList
 
-Adjacency list graph implementation that implements the interfaces defined in the [SCGraphTheory.Abstractions](https://www.nuget.org/packages/SCGraphTheory.Abstractions) package, and can thus work with other packages that also use this abstraction - such as [SCGraphTheory.Search](https://www.nuget.org/packages/SCGraphTheory.Search).
+Mutable adjacency list graph implementation that implements the interfaces defined in the [SCGraphTheory.Abstractions](https://www.nuget.org/packages/SCGraphTheory.Abstractions) package, and can thus work with other packages that also use this abstraction - such as [SCGraphTheory.Search](https://www.nuget.org/packages/SCGraphTheory.Search).
 
 ## Usage Examples
 
