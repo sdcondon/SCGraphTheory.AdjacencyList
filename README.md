@@ -64,14 +64,20 @@ namespace MyUndirectedGraph
     {
         private string myEdgeProp;
 
+        // note the delegate passed to base ctor here - which is for constructing
+        // the reverse edge of this new edge - and note that it calls the other
+        // constructor of this class (see below)
         public Edge(Node from, Node to, string myEdgeProp)
             : base(from, to, (f, t, r) => new Edge(f, t, r, myEdgeProp))
         {
             this.myEdgeProp = myEdgeProp;
         }
 
+        // this ctor is to construct an edge whose reverse already exists - note that
+        // it calls the other base class ctor to one called by the ctor above. Also note
+        // that this is private - we only need to refer invoke it in the lambda above.
         private Edge(Node from, Node to, Edge reverse, string myEdgeProp)
-            : base(from, to, reverse)
+            : base(from, to, reverse) // protected ctor
         {
             this.myEdgeProp = myEdgeProp;
         }

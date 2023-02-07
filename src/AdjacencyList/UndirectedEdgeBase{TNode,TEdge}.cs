@@ -16,7 +16,10 @@ namespace SCGraphTheory.AdjacencyList
         /// </summary>
         /// <param name="from">The node that the edge connects from.</param>
         /// <param name="to">The node that the edge connects to.</param>
-        /// <param name="makeReverse">Delegate to create the reverse of this edge (which should ultimately call the other ctor of this class).</param>
+        /// <param name="makeReverse">
+        /// Delegate to create the reverse of this edge (which should ultimately call the other ctor of this class).
+        /// The arguments of the function are the "from" node, the "to" node, and the reverse edge.
+        /// </param>
         protected UndirectedEdgeBase(TNode from, TNode to, Func<TNode, TNode, TEdge, TEdge> makeReverse)
             : base(from, to)
         {
@@ -24,7 +27,7 @@ namespace SCGraphTheory.AdjacencyList
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UndirectedEdgeBase{TNode, TEdge}"/> class that is the reverse of an already constructed edge.
+        /// Initializes a new instance of the <see cref="UndirectedEdgeBase{TNode, TEdge}"/> class that is the reverse of an edge that has already been constructed.
         /// </summary>
         /// <param name="from">The node that the edge connects from.</param>
         /// <param name="to">The node that the edge connects to.</param>
