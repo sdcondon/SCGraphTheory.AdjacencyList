@@ -68,7 +68,7 @@ namespace MyUndirectedGraph
         // the reverse edge of this new edge - and note that it calls the other
         // constructor of this class (see below)
         public Edge(Node from, Node to, string myEdgeProp)
-            : base(from, to, (from, to, reverse) => new Edge(from, to, reverse, myEdgeProp))
+            : base(from, to, (f, t, r) => new Edge(f, t, r, myEdgeProp))
         {
             this.myEdgeProp = myEdgeProp;
         }
