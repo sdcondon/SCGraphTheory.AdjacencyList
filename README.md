@@ -77,7 +77,7 @@ namespace MyUndirectedGraph
         // it calls the other base class ctor to one called by the ctor above. Also note
         // that this is private - we only need to invoke it in the lambda above.
         private Edge(Node from, Node to, Edge reverse, string myEdgeProp)
-            : base(from, to, reverse) // protected ctor
+            : base(from, to, reverse)
         {
             this.myEdgeProp = myEdgeProp;
         }
