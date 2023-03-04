@@ -2,7 +2,9 @@
 
 # SCGraphTheory.AdjacencyList
 
-[![NuGet version (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/v/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) [![NuGet downloads (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/dt/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/)
+[![NuGet version (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/v/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) 
+[![NuGet downloads (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/dt/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) 
+[![Commits since latest release](https://img.shields.io/github/commits-since/sdcondon/SCGraphTheory.AdjacencyList/latest?style=flat-square)](https://github.com/sdcondon/SCGraphTheory.AdjacencyList/compare/1.0.7...main)
 
 Mutable adjacency list graph implementation that implements the interfaces defined in the [SCGraphTheory.Abstractions](https://github.com/sdcondon/SCGraphTheory.Abstractions) package, and can thus work with other packages that also use this abstraction - such as [SCGraphTheory.Search](https://github.com/sdcondon/SCGraphTheory.Search).
 
