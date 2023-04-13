@@ -6,167 +6,18 @@
 [![NuGet downloads (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/dt/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) 
 [![Commits since latest release](https://img.shields.io/github/commits-since/sdcondon/SCGraphTheory.AdjacencyList/latest?style=flat-square)](https://github.com/sdcondon/SCGraphTheory.AdjacencyList/compare/1.0.7...main)
 
-Mutable adjacency list graph implementation that implements the interfaces defined in the [SCGraphTheory.Abstractions](https://github.com/sdcondon/SCGraphTheory.Abstractions) package, and can thus work with other packages that also use this abstraction - such as [SCGraphTheory.Search](https://github.com/sdcondon/SCGraphTheory.Search).
+This repository contains the source code for the SCGraphTheory.AdjacencyList NuGet package, as well as its tests.
 
-## Usage Examples
+## Package Documentation
 
-**Directed graphs** are the simplest to use. Here's an example with some data properties:
+For documentation of the package itself, see https://sdcondon.net/SCGraphTheory/adjacency-list.
 
-```csharp
-using SCGraphTheory.AdjacencyList;
+## Source Documentation
 
-namespace MyDirectedGraph
-{
-    public class Node : NodeBase<Node, Edge>
-    {
-        public Node(string myNodeProp) => MyNodeProp = myNodeProp;
+I have not written up any documentation of the source (e.g. repo summary, design discussion, build guidance) - and likely won't unless someone else expresses an interest in contributing.
+Once cloned, it should "just work" as far as compilation is concerned.
 
-        public string MyNodeProp { get; }
-    }
+## Issues and Contributions
 
-    public class Edge : EdgeBase<Node, Edge>
-    {
-        public Edge(Node from, Node to, string myEdgeProp)
-            : base(from, to) => MyEdgeProp = myEdgeProp;
-
-        public string MyEdgeProp { get; }
-    }
-
-    public static class Program
-    {
-        ...
-
-        private static Graph<Node, Edge> MakeGraph()
-        {
-            var graph = new Graph<Node, Edge>();
-            Node node1, node2;
-            graph.Add(node1 = new Node("node 1"));
-            graph.Add(node2 = new Node("node 2"));
-            graph.Add(new Edge(node1, node2, "edge 1-2"));
-            ...
-        }
-    }
-}
-```
-
-**Undirected graphs** take a little more effort, though there's a handy `UndirectedEdgeBase` class to do a bit of the work for you. `UndirectedEdgeBase` still conforms to the `IEdge<TNode, TEdge>` interface, so each undirected edge actually consists of a pair of edge objects*. Here's an example with a direction-ignorant settable edge data property:
-
-*\* Note that if we really wanted a single object on the heap for an undirected edge, we could probably do something with by making the actual IEdges value types that refer to the single "edge". The extra complexity and resulting caveats (edge structs as IEdge will be boxed, need to be careful with mutability, etc) mean that it's not something I've bothered exploring thus far..*
-
-```csharp
-using SCGraphTheory.AdjacencyList;
-
-namespace MyUndirectedGraph
-{
-    public class Node : NodeBase<Node, Edge>
-    {
-    }
-
-    public class Edge : UndirectedEdgeBase<Node, Edge>
-    {
-        private string myEdgeProp;
-
-        // note the delegate passed to base ctor here - which is for constructing
-        // the reverse edge of this new edge - and note that it calls the other
-        // constructor of this class (see below)
-        public Edge(Node from, Node to, string myEdgeProp)
-            : base(from, to, (f, t, r) => new Edge(f, t, r, myEdgeProp))
-        {
-            this.myEdgeProp = myEdgeProp;
-        }
-
-        // this ctor is to construct an edge whose reverse already exists - note that
-        // it calls the other base class ctor to one called by the ctor above. Also note
-        // that this is private - we only need to invoke it in the lambda above.
-        private Edge(Node from, Node to, Edge reverse, string myEdgeProp)
-            : base(from, to, reverse)
-        {
-            this.myEdgeProp = myEdgeProp;
-        }
-
-        public string MyEdgeProp
-        {
-            get => myEdgeProp;
-            set
-            {
-                myEdgeProp = value;
-                Reverse.myEdgeProp = value;
-            }
-        }
-    }
-
-    public static class Program
-    {
-        ...
-
-        public static Graph<Node, Edge> MakeGraph()
-        {
-            var graph = new Graph<Node, Edge>();
-            Node node1, node2;
-            graph.Add(node1 = new Node());
-            graph.Add(node2 = new Node());
-            graph.Add(new Edge(node1, node2, "A"));
-            ...
-        }
-    }
-}
-```
-
-Finally, here's an example with "undirected" edges with a direction-specific settable data property (reverse edge negates the value of the property). Obviously its significant that `int` is a value type - solution would be a little more complex with a mutable reference type..
-
-```csharp
-using SCGraphTheory.AdjacencyList;
-
-namespace MyUndirectedGraph2
-{
-    public class Node : NodeBase<Node, Edge>
-    {
-    }
-
-    public class Edge : UndirectedEdgeBase<Node, Edge>
-    {
-        private int myEdgeProp;
-
-        public Edge(Node from, Node to, int myEdgeProp)
-            : base(from, to, (f, t, r) => new Edge(f, t, r, -myEdgeProp))
-        {
-            this.myEdgeProp = myEdgeProp;
-        }
-
-        private Edge(Node from, Node to, Edge reverse, int myEdgeProp)
-            : base(from, to, reverse)
-        {
-            this.myEdgeProp = myEdgeProp;
-        }
-
-        public int MyEdgeProp
-        {
-            get => myEdgeProp;
-            set
-            {
-                myEdgeProp = value;
-                Reverse.myEdgeProp = -value;
-            }
-        }
-    }
-
-    public static class Program
-    {
-        ...
-
-        public static Graph<Node, Edge> MakeGraph()
-        {
-            var graph = new Graph<Node, Edge>();
-            Node node1, node2;
-            graph.Add(node1 = new Node());
-            graph.Add(node2 = new Node());
-            graph.Add(new Edge(node1, node2, 1));
-            ...
-        }
-    }
-}
-```
-
-## Notes
-
-* **"But this isn't an adjacency list representation..":** Yes, it is. Your algorithm textbook won't lumber itself with the conventions of object orientation, but .NET gives us them, and we should use the tools that we are given. If it helps, think of the node objects as the keys of a direct address table that points at each list.
+I'm not expecting anyone to want to get involved given the low download figures on NuGet, but please feel free to do so.
+I do keep an eye on the [issues](https://github.com/sdcondon/SCGraphTheory.AdjacencyList/issues) tab, and will add a CONTRIBUTING.md if anyone drops me a message expressing interest.
