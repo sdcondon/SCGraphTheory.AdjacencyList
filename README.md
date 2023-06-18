@@ -1,4 +1,4 @@
-![SCGraphTheory Icon](src/AdjacencyList/SCGraphTheoryIcon.png)
+![SCGraphTheory Icon](src/AdjacencyList/_PackageFiles/SCGraphTheoryIcon.png)
 
 # SCGraphTheory.AdjacencyList
 
