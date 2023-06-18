@@ -4,7 +4,7 @@
 
 [![NuGet version (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/v/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) 
 [![NuGet downloads (SCGraphTheory.AdjacencyList)](https://img.shields.io/nuget/dt/SCGraphTheory.AdjacencyList.svg?style=flat-square)](https://www.nuget.org/packages/SCGraphTheory.AdjacencyList/) 
-[![Commits since latest release](https://img.shields.io/github/commits-since/sdcondon/SCGraphTheory.AdjacencyList/latest?style=flat-square)](https://github.com/sdcondon/SCGraphTheory.AdjacencyList/compare/1.0.7...main)
+[![Commits since latest release](https://img.shields.io/github/commits-since/sdcondon/SCGraphTheory.AdjacencyList/latest?style=flat-square)](https://github.com/sdcondon/SCGraphTheory.AdjacencyList/compare/1.0.8...main)
 
 This repository contains the source code for the SCGraphTheory.AdjacencyList NuGet package, as well as its tests.
 
