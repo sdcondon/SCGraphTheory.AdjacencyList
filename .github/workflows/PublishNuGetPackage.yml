@@ -21,7 +21,7 @@ jobs:
 
     - name: Get release tag
       id: getReleaseTag
-      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo VERSION=${GITHUB_REF/refs\/tags\//} >> $GITHUB_OUTPUT
 
     - name: Build
       working-directory: ./src
