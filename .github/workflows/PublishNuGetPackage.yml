@@ -9,22 +9,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+    - name: Checkout
+      uses: actions/checkout@v4
 
-    - uses: actions/setup-dotnet@v1
+    - name: Set up dotnet
+      uses: actions/setup-dotnet@v3
 
-    - uses: nuget/setup-nuget@v1
+    - name: Set up Nuget
+      uses: nuget/setup-nuget@v1
       with:
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
 
-    - name: Get release tag
-      id: getReleaseTag
+    - name: Get package version
+      id: getPackageVersion
       run: echo VERSION=${GITHUB_REF/refs\/tags\//} >> $GITHUB_OUTPUT
+      shell: bash
 
     - name: Build
+      run: dotnet build -c Release -p:Version=${{ steps.getPackageVersion.outputs.VERSION }}
       working-directory: ./src
-      run: dotnet build -c Release -p:Version=${{ steps.getReleaseTag.outputs.VERSION }}
 
     - name: Push packages
-      working-directory: ./src
       run: nuget push "**/*.nupkg" -Source nuget.org
+      working-directory: ./src
+
+    - name: Update 'latest-release' tag
+      uses: actions/github-script@v5
+      with:
+        script: |
+          github.rest.git.updateRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: 'tags/latest-release',
+            sha: context.sha
+          }).catch(err => {
+            if (err.status !== 422) throw err;
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/latest-release',
+              sha: context.sha
+            });
+          });
